@@ -5,6 +5,8 @@ import HostedListings from '../pages/HostedListings';
 import BigButton from './BigButton';
 import NewListing from '../pages/NewListing';
 import EditListing from '../pages/EditListing';
+import PublishListing from './PublishListing';
+import LandingPage from '../pages/LandingPage';
 
 import {
 //   BrowserRouter as Router,
@@ -100,7 +102,8 @@ function Site () {
         <Route exact path="/listing/edit/:id" element={<EditListing token={token}/>}></Route>
         <Route exact path="/listing/hostedListings" element={<HostedListings token={token} email={email} />}></Route>
         <Route exact path="/listing/hostedListings/newListing" element={<NewListing token={token}/>}></Route>
-        <Route exact path="/" element = {<b>Welcome</b>}></Route>
+        <Route exact path="/listing/publish/:id" element={<PublishListing token={token}/>}></Route>
+        <Route exact path="/" element={<LandingPage token={token}/>}></Route>
       </Routes>
     </div>
   );

@@ -16,9 +16,9 @@ import {
 const HostedListings = (props) => {
   const [listings, setListings] = React.useState([]);
   const navigate = useNavigate();
-  const [ListingType, setListingType] = React.useState('');
-  const [ListingBathrooms, setListingBathrooms] = React.useState('');
-  // const [ListingBedrooms, setListingBedrooms] = React.useState('');
+  const [ListingType, setListingType] = React.useState([]);
+  const [ListingBathrooms, setListingBathrooms] = React.useState([]);
+  // const [ListingBedrooms, setListingBedrooms] = React.useState([]);
   // const [ListingAmenities, setListingAmenities] = React.useState('');
 
   const fetchListings = async () => {
@@ -46,8 +46,10 @@ const HostedListings = (props) => {
       alert(data.error);
     } else {
       const metadata = data.listing.metadata;
-      setListingType(metadata.type);
-      setListingBathrooms(metadata.bathrooms);
+      setListingType(ListingType => [...ListingType, metadata.type]);
+      setListingBathrooms(ListingBathrooms => [...ListingBathrooms, metadata.bathrooms]);
+      // setListingBedrooms(ListingBedrooms => [...ListingBedrooms, metadata.bedrooms]);
+      // setListingBathrooms(metadata.bathrooms);
       // setListingBedrooms(metadata.bedrooms);
       // setListingAmenities(metadata.amenities);
     }
@@ -57,14 +59,20 @@ const HostedListings = (props) => {
     fetchListings();
   }, []);
 
+  React.useEffect(() => {
+    listings.map((listing) => {
+      return listingDetails(listing.id);
+    })
+  }, [listings]);
+
   return (
     <>
       Current listings:<br />
       {listings.map((listing, idx) => {
         if (listing.owner === props.email) {
-          listingDetails(listing.id);
+          // listingDetails(listing.id);
           return (
-            <HostedListingsCard key = {idx} listing={listing} idx={idx} type={ListingType} bathrooms={ListingBathrooms} ></HostedListingsCard>
+            <HostedListingsCard key = {idx} listing={listing} idx={idx} type={ListingType[idx]} bathrooms={ListingBathrooms[idx]} ></HostedListingsCard>
           )
         } else {
           return null;

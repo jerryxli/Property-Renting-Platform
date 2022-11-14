@@ -25,6 +25,7 @@ const HostedListingsCard = (props) => {
         <div>Bathrooms: {bathrooms}</div>
       </div>
       <button onClick={() => navigate('/listing/edit/' + listing.id)}>Edit</button>
+      <button onClick={() => navigate('/listing/publish/' + listing.id)}>Publish Listing</button>
       <hr />
     </>
   );
