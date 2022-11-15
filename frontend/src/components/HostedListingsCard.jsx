@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  // BrowserRouter as Router,
-  // Routes,
-  // Route,
   useNavigate,
 } from 'react-router-dom';
 

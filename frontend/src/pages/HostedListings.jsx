@@ -70,7 +70,6 @@ const HostedListings = (props) => {
       Current listings:<br />
       {listings.map((listing, idx) => {
         if (listing.owner === props.email) {
-          // listingDetails(listing.id);
           return (
             <HostedListingsCard key = {idx} listing={listing} idx={idx} type={ListingType[idx]} bathrooms={ListingBathrooms[idx]} ></HostedListingsCard>
           )

@@ -4,7 +4,6 @@ import PublishedListingsCard from '../components/PublishedListingCard';
 
 const LandingPage = (props) => {
   const [listings, setListings] = React.useState([]);
-  // const [sortedListings, setSortedListings] = React.useState([]);
   const [published, setPublished] = React.useState([]);
 
   const fetchListings = async () => {
@@ -56,7 +55,7 @@ const LandingPage = (props) => {
       {listings.map((listing, idx) => {
         if (published[idx]) {
           return (
-            <PublishedListingsCard key = {idx} listing={listing} idx={idx} />
+            <PublishedListingsCard key={idx} listing={listing} idx={idx} />
           )
         } else {
           return null;
