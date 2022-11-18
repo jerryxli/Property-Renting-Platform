@@ -67,9 +67,14 @@ function Site () {
       navigate('/');
     }
   }
-  console.log(pathname);
+
+  const styleObj = {
+    margin: '0 10px 0 10px'
+  };
+
   return (
     <div>
+      <header>Airbrb</header>
       <nav>
         <ul>
           {!token && (
@@ -97,19 +102,20 @@ function Site () {
           <BigButton onClick={logout}>Logout</BigButton>
         )}
       </nav>
-
-      <Routes>
-        <Route exact path="/dashboard" element={<b>Hello dashboard</b>}></Route>
-        <Route exact path="/login" element={<Login setTokenFn={setToken} />}></Route>
-        <Route exact path="/register" element={<Register setTokenFn={setToken} />}></Route>
-        <Route exact path="/listing/edit/:id" element={<EditListing token={token}/>}></Route>
-        <Route exact path="/listing/hostedListings" element={<HostedListings token={token} email={email} />}></Route>
-        <Route exact path="/listing/hostedListings/newListing" element={<NewListing token={token}/>}></Route>
-        <Route exact path="/listing/:listingId" element={<Listing token={token} email={email}/>}></Route>
-        <Route exact path="/listing/publish/:id" element={<PublishListing token={token}/>}></Route>
-        <Route exact path="/listing/history/:listingId" element={<BookingHistory token={token}/>}></Route>
-        <Route exact path="/" element={<LandingPage token={token}/>}></Route>
-      </Routes>
+      <div style={styleObj}>
+        <Routes>
+          <Route exact path="/dashboard" element={<b>Hello dashboard</b>}></Route>
+          <Route exact path="/login" element={<Login setTokenFn={setToken} />}></Route>
+          <Route exact path="/register" element={<Register setTokenFn={setToken} />}></Route>
+          <Route exact path="/listing/edit/:id" element={<EditListing token={token}/>}></Route>
+          <Route exact path="/listing/hostedListings" element={<HostedListings token={token} email={email} />}></Route>
+          <Route exact path="/listing/hostedListings/newListing" element={<NewListing token={token}/>}></Route>
+          <Route exact path="/listing/:listingId" element={<Listing token={token} email={email}/>}></Route>
+          <Route exact path="/listing/publish/:id" element={<PublishListing token={token}/>}></Route>
+          <Route exact path="/listing/history/:listingId" element={<BookingHistory token={token}/>}></Route>
+          <Route exact path="/" element={<LandingPage token={token}/>}></Route>
+        </Routes>
+      </div>
     </div>
   );
 }

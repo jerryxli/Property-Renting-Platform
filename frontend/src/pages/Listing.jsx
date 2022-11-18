@@ -86,17 +86,21 @@ const Listing = (props) => {
     }
   }, []);
 
+  const styleObj = {
+    width: '100px',
+    height: '70px'
+  };
+
   return (
     <>
     <div>
       <h1>{title}</h1>
-      <img src={thumbnail}/>
+      <img style={styleObj} src={thumbnail}/>
       <div>Address: {address}</div>
       <div>Ammenities: {amenities}</div>
       <div>Price: ${price}</div>
       {/* <div>Extra Images:</div> */}
       <div>Type: {type}</div>
-      {/* <div>Reviews: </div> */}
       <div>Bedrooms: {bedrooms}</div>
       {/* beds */}
       <div>Bathrooms: {bathrooms}</div>
@@ -104,7 +108,6 @@ const Listing = (props) => {
       <b>Reviews: </b>
       <ul>
         {reviews.map((review, idx) => {
-          console.log(review);
           return (
             <li key={idx}>{review}</li>
           )

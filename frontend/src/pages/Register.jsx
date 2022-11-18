@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import BigButton from '../components/BigButton';
+import Button from '@mui/material/Button';
 
 const Register = (props) => {
   const [email, setEmail] = React.useState('');
@@ -48,7 +48,7 @@ const Register = (props) => {
       Password: <input type="password" onChange={(event) => setPwd(event.target.value)} value={pwd} /><br />
       Confirm Password: <input type="password" onChange={(event) => setPwd2(event.target.value)} value={pwd2} /><br />
       Name: <input type="text" onChange={(event) => setName(event.target.value)} value={name} /><br />
-      <BigButton onClick={checkRegister}>Register</BigButton>
+      <Button variant="outlined" onClick={checkRegister}>Register</Button>
     </>
   );
 }

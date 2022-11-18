@@ -1,6 +1,6 @@
 import React from 'react';
-import BigButton from '../components/BigButton';
 import PropTypes from 'prop-types';
+import Button from '@mui/material/Button';
 
 const Login = (props) => {
   const [email, setEmail] = React.useState('');
@@ -32,7 +32,7 @@ const Login = (props) => {
     <>
       Email: <input type="text" onChange={(event) => setEmail(event.target.value)} value={email} /><br />
       Password: <input type="password" onChange={(event) => setPwd(event.target.value)} value={pwd} /><br />
-      <BigButton id="login-button" onClick={loginBtn}>Login</BigButton>
+      <Button variant="outlined" id="login-button" onClick={loginBtn}>Login</Button>
     </>
   );
 }

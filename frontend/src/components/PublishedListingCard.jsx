@@ -22,13 +22,18 @@ const PublishedListingsCard = (props) => {
     cursor: isHovering ? 'pointer' : '',
   };
 
+  const styleObj2 = {
+    width: '100px',
+    height: '70px'
+  };
+
   return (
     <>
       <div style={styleObj} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={() => navigate('/listing/' + props.listing.id)}>
         <hr />
         <div key={idx}>
           {listing.title}<br />
-          <img src={listing.thumbnail}/>
+          <img style={styleObj2} src={listing.thumbnail}/>
           <div><b>{listing.reviews.length} </b>Total Reviews</div>
         </div>
         <hr />

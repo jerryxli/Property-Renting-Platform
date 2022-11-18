@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import BigButton from '../components/BigButton';
+import Button from '@mui/material/Button';
 
 import {
   useNavigate,
@@ -51,7 +51,7 @@ const NewListing = (props) => {
     Bathrooms: <input type="text" value={newListingBathrooms} onChange={(e) => setNewListingBathrooms(e.target.value)} /><br />
     Bedrooms: <input type="text" value={newListingBedrooms} onChange={(e) => setNewListingBedrooms(e.target.value)} /><br />
     Property Amenities: <input type="text" value={newListingAmenities} onChange={(e) => setNewListingAmenities(e.target.value)} /><br />
-    <BigButton onClick={() => newListing({
+    <Button variant="outlined" onClick={() => newListing({
       title: newListingTitle,
       address: {
         street: street,
@@ -68,7 +68,7 @@ const NewListing = (props) => {
         bedrooms: newListingBedrooms,
         amenities: newListingAmenities
       },
-    })}>Create!</BigButton>
+    })}>Create!</Button>
     </>
   );
 }

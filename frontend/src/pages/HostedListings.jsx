@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import BigButton from '../components/BigButton';
 import HostedListingsCard from '../components/HostedListingsCard';
+import Button from '@mui/material/Button';
 
 import {
   useNavigate,
@@ -57,7 +57,7 @@ const HostedListings = (props) => {
 
   return (
     <>
-      Current listings:<br />
+      <b>Current listings:</b> <br />
       {listings.map((listing, idx) => {
         if (listing.owner === props.email) {
           return (
@@ -67,7 +67,7 @@ const HostedListings = (props) => {
           return null;
         }
       })}
-      <BigButton onClick={() => navigate('/listing/hostedListings/newListing')}>create new listing</BigButton>
+      <Button variant="outlined" onClick={() => navigate('/listing/hostedListings/newListing')}>Create new listing</Button>
     </>
   );
 }

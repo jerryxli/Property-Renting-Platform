@@ -53,16 +53,17 @@ const LandingPage = (props) => {
     <>
     <h1>Landing Page</h1>
     <div>
-      Public listings:<br />
-        {listings.map((listing, idx) => {
-          if (published[idx]) {
-            return (
-              <PublishedListingsCard key={idx} listing={listing} idx={idx} />
-            )
-          } else {
-            return null;
-          }
-        })}
+      <b>Public listings:</b>
+      <br />
+      {listings.map((listing, idx) => {
+        if (published[idx]) {
+          return (
+            <PublishedListingsCard key={idx} listing={listing} idx={idx} />
+          )
+        } else {
+          return null;
+        }
+      })}
     </div>
     </>
   );

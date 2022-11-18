@@ -75,6 +75,11 @@ const HostedListingsCard = (props) => {
     listingDetails(listing.id);
   }, []);
 
+  const styleObj = {
+    width: '100px',
+    height: '70px'
+  };
+
   return (
     <>
       {!deleted && (
@@ -82,7 +87,7 @@ const HostedListingsCard = (props) => {
         <hr />
         <div key={idx}>
           {listing.title}<br />
-          <img src={listing.thumbnail}/>
+          <img style={styleObj} src={listing.thumbnail}/>
           <div>Price: ${listing.price}</div>
           <div>Type: {type}</div>
           <div>Bathrooms: {bathrooms}</div>
