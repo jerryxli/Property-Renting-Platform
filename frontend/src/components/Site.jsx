@@ -8,6 +8,7 @@ import EditListing from '../pages/EditListing';
 import PublishListing from './PublishListing';
 import LandingPage from '../pages/LandingPage';
 import Listing from '../pages/Listing';
+import BookingHistory from '../pages/BookingHistory';
 
 import {
 //   BrowserRouter as Router,
@@ -42,7 +43,7 @@ function Site () {
   React.useEffect(() => {
     if (token !== null) {
       if (pathname === '/login' || pathname === '/register') {
-        navigate('/dashboard');
+        navigate('/');
       }
     }
   }, [token]);
@@ -63,6 +64,7 @@ function Site () {
       localStorage.removeItem('email');
       window.localStorage.clear();
       setToken(null);
+      navigate('/');
     }
   }
   console.log(pathname);
@@ -83,7 +85,7 @@ function Site () {
           {token && (
             <>
               <li>
-                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/">Landing Page</Link>
               </li>
               <li>
                 <Link to="/listing/hostedListings">Hosted Listings</Link>
@@ -105,6 +107,7 @@ function Site () {
         <Route exact path="/listing/hostedListings/newListing" element={<NewListing token={token}/>}></Route>
         <Route exact path="/listing/:listingId" element={<Listing token={token} email={email}/>}></Route>
         <Route exact path="/listing/publish/:id" element={<PublishListing token={token}/>}></Route>
+        <Route exact path="/listing/history/:listingId" element={<BookingHistory token={token}/>}></Route>
         <Route exact path="/" element={<LandingPage token={token}/>}></Route>
       </Routes>
     </div>

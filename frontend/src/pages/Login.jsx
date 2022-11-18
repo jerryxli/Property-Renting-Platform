@@ -32,7 +32,7 @@ const Login = (props) => {
     <>
       Email: <input type="text" onChange={(event) => setEmail(event.target.value)} value={email} /><br />
       Password: <input type="password" onChange={(event) => setPwd(event.target.value)} value={pwd} /><br />
-      <BigButton onClick={loginBtn}>Login</BigButton>
+      <BigButton id="login-button" onClick={loginBtn}>Login</BigButton>
     </>
   );
 }

@@ -39,8 +39,7 @@ const PublishListing = (props) => {
       navigate('/listing/hostedListings');
     }
   }
-  console.log('start' + dateStart);
-  console.log('end' + dateEnd);
+
   const addMoreDates = () => {
     setDates(dates => [...dates, <span key={dates.length}>Date Start: <input type="date" onChange={(e) => setdateStart(dateStart => [...dateStart, e.target.value])} /></span>]);
     setDates(dates => [...dates, <span key={dates.length}>Date End: <input type="date" onChange={(e) => setDateEnd(dateEnd => [...dateEnd, e.target.value])} /></span>]);

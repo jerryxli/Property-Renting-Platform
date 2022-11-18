@@ -16,9 +16,12 @@ const Listing = (props) => {
   const [bathrooms, setBathrooms] = React.useState('');
   const [bedrooms, setBedrooms] = React.useState('');
   const [amenities, setAmenities] = React.useState('');
+  const [rating, setRating] = React.useState(0);
+  const [reviews, setReviews] = React.useState([]);
   // const [images, setImages] = React.useState([]);
   const [allowReview, setAllowReview] = React.useState(false);
   const [bookingId, setBookingId] = React.useState('');
+  const [bookingStatus, setBookingStatus] = React.useState('');
 
   const listingDetails = async (listingId) => {
     const response = await fetch('http://localhost:5005/listings/' + listingId, {
@@ -42,6 +45,12 @@ const Listing = (props) => {
       setBathrooms(listing.metadata.bathrooms);
       setBedrooms(listing.metadata.bedrooms);
       setAmenities(listing.metadata.amenities);
+      let totalScore = 0;
+      for (let i = 0; i < listing.reviews.length; i++) {
+        totalScore += parseInt(listing.reviews[i].score);
+        setReviews(reviews => [...reviews, listing.reviews[i].comment]);
+      }
+      setRating(totalScore / listing.reviews.length);
       // setImages(images => [...images, data.listing.thumbnail]);
     }
   }
@@ -60,9 +69,10 @@ const Listing = (props) => {
     } else {
       for (let i = 0; i < data.bookings.length; i++) {
         if (data.bookings[i].listingId === params.listingId && data.bookings[i].owner === props.email) {
+          setBookingId(data.bookings[i].id);
+          setBookingStatus(data.bookings[i].status);
           if (data.bookings[i].status === 'accepted') {
             setAllowReview(true);
-            setBookingId(data.bookings[i].id);
           }
         }
       }
@@ -90,11 +100,24 @@ const Listing = (props) => {
       <div>Bedrooms: {bedrooms}</div>
       {/* beds */}
       <div>Bathrooms: {bathrooms}</div>
+      <div>Rating: {rating}</div>
+      <b>Reviews: </b>
+      <ul>
+        {reviews.map((review, idx) => {
+          console.log(review);
+          return (
+            <li key={idx}>{review}</li>
+          )
+        })}
+      </ul>
+      {props.token && bookingId && (
+        <h3>Booking Status: {bookingStatus}</h3>
+      )}
       {props.token && (
-        <BookingSection listingId={params.listingId} price={price}/>
+        <BookingSection token={props.token} listingId={params.listingId} price={price}/>
       )}
       {props.token && allowReview && (
-        <ReviewSection listingId={params.listingId} bookingId={bookingId}/>
+        <ReviewSection token={props.token} listingId={params.listingId} bookingId={bookingId}/>
       )}
     </div>
     </>

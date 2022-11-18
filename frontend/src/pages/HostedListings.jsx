@@ -4,13 +4,7 @@ import BigButton from '../components/BigButton';
 import HostedListingsCard from '../components/HostedListingsCard';
 
 import {
-  // BrowserRouter as Router,
-  // Routes,
-  // Route,
-  // Link,
-  // Redirect,
   useNavigate,
-  // useLocation
 } from 'react-router-dom';
 
 const HostedListings = (props) => {
@@ -18,8 +12,7 @@ const HostedListings = (props) => {
   const navigate = useNavigate();
   const [ListingType, setListingType] = React.useState([]);
   const [ListingBathrooms, setListingBathrooms] = React.useState([]);
-  // const [ListingBedrooms, setListingBedrooms] = React.useState([]);
-  // const [ListingAmenities, setListingAmenities] = React.useState('');
+  const [ListingBedrooms, setListingBedrooms] = React.useState([]);
 
   const fetchListings = async () => {
     const response = await fetch('http://localhost:5005/listings', {
@@ -48,10 +41,7 @@ const HostedListings = (props) => {
       const metadata = data.listing.metadata;
       setListingType(ListingType => [...ListingType, metadata.type]);
       setListingBathrooms(ListingBathrooms => [...ListingBathrooms, metadata.bathrooms]);
-      // setListingBedrooms(ListingBedrooms => [...ListingBedrooms, metadata.bedrooms]);
-      // setListingBathrooms(metadata.bathrooms);
-      // setListingBedrooms(metadata.bedrooms);
-      // setListingAmenities(metadata.amenities);
+      setListingBedrooms(ListingBedrooms => [...ListingBedrooms, metadata.bedrooms]);
     }
   }
 
@@ -71,7 +61,7 @@ const HostedListings = (props) => {
       {listings.map((listing, idx) => {
         if (listing.owner === props.email) {
           return (
-            <HostedListingsCard key = {idx} listing={listing} idx={idx} type={ListingType[idx]} bathrooms={ListingBathrooms[idx]} ></HostedListingsCard>
+            <HostedListingsCard token={props.token} key={idx} listing={listing} idx={idx} type={ListingType[idx]} bathrooms={ListingBathrooms[idx]} beds={ListingBedrooms[idx]} ></HostedListingsCard>
           )
         } else {
           return null;

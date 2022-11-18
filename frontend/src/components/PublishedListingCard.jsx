@@ -29,7 +29,7 @@ const PublishedListingsCard = (props) => {
         <div key={idx}>
           {listing.title}<br />
           <img src={listing.thumbnail}/>
-          {/* reviews */}
+          <div><b>{listing.reviews.length} </b>Total Reviews</div>
         </div>
         <hr />
       </div>
